@@ -86,5 +86,5 @@
             </div>
         </div>
     </div>
-    @include('partials.add_to_quantity')
+
 @endsection
