@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CartDetail;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartDetailController extends Controller
@@ -18,6 +19,8 @@ class CartDetailController extends Controller
         $cartDetail->cart_id = auth()->user()->cart->id;
         $cartDetail->product_id = $request->product_id;
         $cartDetail->quantity = $request->quantity;
+        $cartDetail->total = Product::find($request->product_id)->price * $cartDetail->quantity;
+
         $cartDetail->save();
 
         return back()->with('status', 'El producto se ha añadido al carrito');

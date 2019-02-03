@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CartDetail;
 use App\Mail\NewOrder;
 use App\User;
 use Carbon\Carbon;
@@ -15,6 +16,7 @@ class CartController extends Controller
         $cart = auth()->user()->cart;
         $cart->status = 'Pending';
         $cart->order_date = Carbon::now();
+
         $cart->save();
 
         $admins = User::where('admin', true)->get();

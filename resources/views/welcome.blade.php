@@ -53,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="title">Bienvenido a IESCierva Store</h1>
+                    <h1 class="title">Bienvenido a IESCierva Store 2</h1>
                     <h4>Aquí podrás encontrar cualquier producto informático que necesites. Busca, compara y si encuentras otro sitio mejor, negociamos.</h4>
                     <br>
                     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
