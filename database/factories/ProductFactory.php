@@ -8,6 +8,7 @@ $factory->define(\App\Product::class, function (Faker $faker) {
         'description' => $faker->sentence(10),
         'long_description' => $faker->realText(),
         'price' => $faker->randomFloat(2,5,150),
-        'category_id' => $faker->numberBetween(1,10)
+        'category_id' => $faker->numberBetween(1,10),
+        'quantity' => $faker->numberBetween(1, 100),
     ];
 });

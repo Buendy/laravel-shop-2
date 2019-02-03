@@ -24,6 +24,7 @@
                                 <th class="col-md-2 text-center">Nombre</th>
                                 <th class="col-md-4 text-center">Descripción</th>
                                 <th class="text-center">Categoría</th>
+                                <th class="text-center">Cantidad</th>
                                 <th class="text-right">Precio</th>
                                 <th class="text-center">Opciones</th>
                             </tr>
@@ -35,6 +36,7 @@
                                     <td>{{ $product->name }}</td>
                                     <td class="col-4">{{ $product->description }}</td>
                                     <td>{{ $product->category_name}}</td>
+                                    <td>{{ $product->quantity }}</td>
                                     <td class="text-right">{{ $product->price }}&euro;</td>
                                     <td class="text-right">
                                         <a href="{{ url('/products/' . $product->id) }}" rel="tooltip" title="Ver Producto"
@@ -44,6 +46,7 @@
                                         </a>
                                         <a href="{{ url('/admin/products/' . $product->id . '/edit') }}"
                                            rel="tooltip" class="btn btn-success btn-simple btn-sm"
+                                           title="Editar producto"
                                         >
                                             <i class="fa fa-edit"></i>
                                         </a>
@@ -53,6 +56,14 @@
                                         >
                                             <i class="fa fa-image"></i>
                                         </a>
+
+                                        <a href="{{ url('/admin/products/' . $product->id . '/addStock') }}"
+                                           rel="tooltip" title="Añadir a stock"
+                                           class="btn btn-warning btn-simple btn-sm"
+                                        >
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+
                                         <form action="{{ url('/admin/products/' . $product->id) }}"
                                             method="post" class="d-inline-block"
                                         >
@@ -75,4 +86,5 @@
             </div>
         </div>
     </div>
+    @include('partials.add_to_quantity')
 @endsection

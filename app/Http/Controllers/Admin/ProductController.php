@@ -89,4 +89,28 @@ class ProductController extends Controller
         return redirect('/admin/products');
     }
 
+    public function addStock(Product $product)
+    {
+        return view('admin.products.add', compact('product'));
+    }
+
+    public function addStockUpdate(Request $request, Product $product)
+    {
+        $this->validate($request, [
+            'quantity' => 'required | numeric | min:0 | max:100',
+        ],[
+            'quantity.required' => 'Debes introducir una cantidad',
+            'quantity.numeric' => 'Debes introducir un número',
+            'quantity.min' => 'Minimo un producto para añadir',
+            'quantity.max' => 'Máximo cien productos para añadir',
+        ]);
+
+        $product->quantity += $request->input('quantity');
+        $product->save();
+
+        return redirect('/admin/products');
+
+
+    }
+
 }

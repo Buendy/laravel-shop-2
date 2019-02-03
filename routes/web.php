@@ -39,6 +39,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group
     Route::get('/products/{product}/edit', 'ProductController@edit');
     Route::put('/products/{product}', 'ProductController@update');
     Route::delete('/products/{product}', 'ProductController@destroy');
+    Route::get('/products/{product}/addStock', 'ProductController@addStock');
+    Route::post('/products/addStock/{product}', 'ProductController@addStockUpdate');
 
     Route::get('/products/{product}/images', 'ImageController@index');
     Route::post('/products/{product}/images', 'ImageController@store');

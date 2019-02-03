@@ -16,12 +16,20 @@ class CartDetailController extends Controller
     public function store(Request $request)
     {
         $cartDetail = new CartDetail();
-        $cartDetail->cart_id = auth()->user()->cart->id;
-        $cartDetail->product_id = $request->product_id;
-        $cartDetail->quantity = $request->quantity;
-        $cartDetail->total = Product::find($request->product_id)->price * $cartDetail->quantity;
+        $cartLine = CartDetail::where('product_id', '=', $request->product_id)->first();
+        if(CartDetail::where('product_id', '=', $request->product_id)->first()){
+            $cartLine->quantity += $request->quantity;
+            $cartLine->total = Product::find($request->product_id)->price * $cartLine->quantity;
+            $cartLine->save();
+        }else{
+            $cartDetail->cart_id = auth()->user()->cart->id;
+            $cartDetail->product_id = $request->product_id;
+            $cartDetail->quantity = $request->quantity;
+            $cartDetail->total = Product::find($request->product_id)->price * $cartDetail->quantity;
+            $cartDetail->save();
+        }
 
-        $cartDetail->save();
+
 
         return back()->with('status', 'El producto se ha añadido al carrito');
     }
