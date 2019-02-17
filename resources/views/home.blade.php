@@ -86,18 +86,22 @@
                     @endforeach
                     </tbody>
                 </table>
+                @if(auth()->user()->cart->details->count())
                 <div class="text-center">
                     <p>
                         <strong>Importe a pagar:</strong> {{ auth()->user()->cart->total }}€
                     </p>
                 </div>
                 <div class="text-center">
-                    <form action="{{ url('/order') }}" method="post">
-                        @csrf
-                        <button class="btn btn-primary btn-round">
-                            <i class="material-icons">done</i> Realizar pedido
-                        </button>
-                    </form>
+
+                        <form action="{{ url('/order') }}" method="post">
+                            @csrf
+                            <button class="btn btn-primary btn-round">
+                                <i class="material-icons">done</i> Realizar pedido
+                            </button>
+                        </form>
+                        @endif
+
                 </div>
             </div>
         </div>

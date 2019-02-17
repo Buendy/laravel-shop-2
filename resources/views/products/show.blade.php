@@ -20,6 +20,11 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
+                            @if(session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <div class="name">
                                 <h3 class="title">{{ $product->name }}</h3>
                                 <h6>{{ $product->category_name }}</h6>

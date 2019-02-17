@@ -16,8 +16,16 @@ class CartDetailController extends Controller
     public function store(Request $request)
     {
         $cartDetail = new CartDetail();
-        $cartLine = CartDetail::where('product_id', '=', $request->product_id)->first();
-        if(CartDetail::where('product_id', '=', $request->product_id)->first()){
+        $cartLine = CartDetail::where('product_id', '=', $request->product_id)->where('cart_id', '=', auth()->user()->cart->id)->first();
+        $producto = Product::find($request->product_id);
+
+
+        if($request->quantity > $producto->quantity){
+            return  back()->with('error', 'Ha seleccionado más cantidad de la disponible. Solo quedan ' . $producto->quantity . " unidades. Por favor vuelva a seleccionar el producto" );
+        }
+
+
+        if($cartLine){
             $cartLine->quantity += $request->quantity;
             $cartLine->total = Product::find($request->product_id)->price * $cartLine->quantity;
             $cartLine->save();
